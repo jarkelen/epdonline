@@ -1,48 +1,82 @@
-%p#notice= notice
+%h2 Patient details
 
-%p
-  %b First name:
-  = @patient.first_name
-%p
-  %b Last name:
-  = @patient.last_name
-%p
-  %b Bsn:
-  = @patient.bsn
-%p
-  %b Birthdate:
-  = @patient.birthdate
-%p
-  %b Gender:
-  = @patient.gender
-%p
-  %b Street:
-  = @patient.street
-%p
-  %b Zipcode:
-  = @patient.zipcode
-%p
-  %b City:
-  = @patient.city
-%p
-  %b Phone:
-  = @patient.phone
-%p
-  %b Email:
-  = @patient.email
-%p
-  %b Insurance company:
-  = @patient.insurance_company
-%p
-  %b Insurance number:
-  = @patient.insurance_number
-%p
-  %b Startdate:
-  = @patient.startdate
-%p
-  %b Enddate:
-  = @patient.enddate
+.data
+  - if @patient.hospital == "B"
+    %p.b
+      %b Inititalen:
+      = @patient.initials
+  - if @patient.hospital == "C"
+    %p.c
+      %b Inititalen:
+      = @patient.initials
+  %p
+    %b Voornaam:
+    = @patient.first_name
+  %p
+    %b Achternaam:
+    = @patient.last_name
+  %p
+    %b BSN nummer:
+    = @patient.bsn
+  %p
+    %b Geboortedatum:
+    = @patient.birthdate.strftime("%d-%m-%Y")
 
-= link_to 'Edit', edit_patient_path(@patient)
-\|
-= link_to 'Back', patients_path
+    - if @patient.hospital == "B"
+      %p.b
+        %b Geslacht:
+    - elsif @patient.hospital == "C"
+      %p.c
+        %b Geslacht:
+        = @patient.gender
+    - else
+      %p
+        %b Geslacht:
+        = @patient.gender
+
+  %p
+    %b Straat:
+    = @patient.street
+
+  - if @patient.hospital == "C"
+    %p.c
+      %b Huisnummer:
+      = @patient.housenumber
+
+  %p
+    %b Postcode:
+    = @patient.zipcode
+  %p
+    %b Woonplaats:
+    = @patient.city
+  %p
+    %b Telefoon:
+    = @patient.phone
+
+    - if @patient.hospital == "B"
+      %p.b
+        %b Email:
+    - elsif @patient.hospital == "C"
+      %p.c
+        %b Email:
+    - else
+      %p
+        %b Email:
+        = @patient.email
+  %p
+    %b Zorgverzekeraar:
+    = @patient.insurance_company
+  %p
+    %b Polisnummer:
+    = @patient.insurance_number
+
+  - if @patient.hospital == "C"
+    %p.c
+      %b Startdatum verzekering:
+      = @patient.startdate.strftime("%d-%m-%Y") unless @patient.startdate.blank?
+    %p.c
+      %b Einddatum verzekering:
+      = @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
+
+  = link_to 'Wijzigen', edit_patient_path(@patient), class: "btn btn-default"
+  = link_to 'Verwijderen', @patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"

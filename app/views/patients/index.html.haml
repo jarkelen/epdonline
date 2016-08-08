@@ -1,26 +1,39 @@
-%h1 Overzicht patienten
+%h2 Overzicht patienten
 
-%table
+%table.table.table-striped
   %thead
     %tr
+      - if params[:hospital] == "B"
+        %th.b Initialen
+      - if params[:hospital] == "C"
+        %th.c Initialen
       %th Voornaam
       %th Achternaam
       %th BSN nummer
       %th Geboortedatum
-      %th
-      %th
+      - if params[:hospital] == "C"
+        %th.c Startdatum
+        %th.c Einddatum
       %th
 
   %tbody
     - @patients.each do |patient|
       %tr
+        - if params[:hospital] == "B"
+          %td.b= patient.initials
+        - if params[:hospital] == "C"
+          %td.c= patient.initials
         %td= patient.first_name
         %td= patient.last_name
         %td= patient.bsn
         %td= patient.birthdate
-        %td= link_to 'Details', patient, class: "btn btn-mini"
-        %td= link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-mini"
-        %td= link_to 'Verwijderen', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-mini"
+        - if params[:hospital] == "C"
+          %td.c= patient.startdate
+          %td.c= patient.enddate
+        %td
+          = link_to 'Details', patient, class: "btn btn-default btn-xs"
+          = link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-default btn-xs"
+          = link_to 'Verwijderen', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 

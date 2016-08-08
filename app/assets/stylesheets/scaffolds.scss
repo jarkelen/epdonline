@@ -21,18 +21,36 @@ pre {
 .menu {
   margin-bottom: 30px;
 }
-a {
-  color: #000;
 
-  &:visited {
-    color: #FFFFFF;
+.navbar-default .navbar-brand {
+  font-size: 30px;
+  color: #286090;
+  font-weight: bold;
+}
+.b {
+  color: #8470FF;
+  label {
+    color: #8470FF;
   }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
+  input {
+    background-color: #e6e2ff;
+    border: 1px solid #8470FF;
   }
 }
+.c {
+  color: #5480ac;
+  label {
+    color: #5480ac;
+  }
+  input, select {
+    background-color: #d6e9fc;
+    border: 1px solid #5480ac;
+  }
+}
+.data {
+  margin: 20px 0 0 20px;
+}
+
 
 th {
   padding-bottom: 5px;
