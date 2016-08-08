@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-  def indec
+  def index
   end
 
   def menu

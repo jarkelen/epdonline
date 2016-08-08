@@ -1,0 +1,27 @@
+%h1 Overzicht patienten
+
+%table
+  %thead
+    %tr
+      %th Voornaam
+      %th Achternaam
+      %th BSN nummer
+      %th Geboortedatum
+      %th
+      %th
+      %th
+
+  %tbody
+    - @patients.each do |patient|
+      %tr
+        %td= patient.first_name
+        %td= patient.last_name
+        %td= patient.bsn
+        %td= patient.birthdate
+        %td= link_to 'Details', patient, class: "btn btn-mini"
+        %td= link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-mini"
+        %td= link_to 'Verwijderen', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-mini"
+
+%br
+
+= link_to 'Patient toevoegen', new_patient_path(hospital: params[:hospital]), class: "btn btn-primary"

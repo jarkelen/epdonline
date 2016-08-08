@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @patient.first_name
+%p
+  %b Last name:
+  = @patient.last_name
+%p
+  %b Bsn:
+  = @patient.bsn
+%p
+  %b Birthdate:
+  = @patient.birthdate
+%p
+  %b Gender:
+  = @patient.gender
+%p
+  %b Street:
+  = @patient.street
+%p
+  %b Zipcode:
+  = @patient.zipcode
+%p
+  %b City:
+  = @patient.city
+%p
+  %b Phone:
+  = @patient.phone
+%p
+  %b Email:
+  = @patient.email
+%p
+  %b Insurance company:
+  = @patient.insurance_company
+%p
+  %b Insurance number:
+  = @patient.insurance_number
+%p
+  %b Startdate:
+  = @patient.startdate
+%p
+  %b Enddate:
+  = @patient.enddate
+
+= link_to 'Edit', edit_patient_path(@patient)
+\|
+= link_to 'Back', patients_path

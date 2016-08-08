@@ -4,12 +4,30 @@
   .row
     .col-md-10.col-md-offset-1
       %h2.page-header Kies een ziekenhuis
-  / /.row
+
   / Ziekenhuis A
   .row
     .col-md-10.col-md-offset-1
       %h3 Ziekenhuis A - Standaard EPD
       %p Dit ziekenhuis heeft een standaard EPD geimplementeerd zonder enig maatwerk.
-      = link_to site_menu_path, class: "btn btn-primary" do
+      = link_to site_menu_path(hospital: "A"), class: "btn btn-primary" do
+        Open EPD
+        %span.glyphicon.glyphicon-chevron-right
+
+  / Ziekenhuis B
+  .row
+    .col-md-10.col-md-offset-1
+      %h3 Ziekenhuis B - Beperkt maatwerk EPD
+      %p Dit ziekenhuis heeft een standaard EPD geimplementeerd waarop enig maatwerk heeft plaatsgevonden.
+      = link_to site_menu_path(hospital: "B"), class: "btn btn-primary" do
+        Open EPD
+        %span.glyphicon.glyphicon-chevron-right
+
+  / Ziekenhuis C
+  .row
+    .col-md-10.col-md-offset-1
+      %h3 Ziekenhuis C - Maatwerk EPD
+      %p Dit ziekenhuis heeft een volledig maatwerk EPD geimplementeerd.
+      = link_to site_menu_path(hospital: "C"), class: "btn btn-primary" do
         Open EPD
         %span.glyphicon.glyphicon-chevron-right
