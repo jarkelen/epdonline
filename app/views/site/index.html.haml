@@ -1,0 +1,15 @@
+/ Page Content
+.container
+  / Page Heading
+  .row
+    .col-md-10.col-md-offset-1
+      %h2.page-header Kies een ziekenhuis
+  / /.row
+  / Ziekenhuis A
+  .row
+    .col-md-10.col-md-offset-1
+      %h3 Ziekenhuis A - Standaard EPD
+      %p Dit ziekenhuis heeft een standaard EPD geimplementeerd zonder enig maatwerk.
+      = link_to site_menu_path, class: "btn btn-primary" do
+        Open EPD
+        %span.glyphicon.glyphicon-chevron-right

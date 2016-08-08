@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  root to: 'site#index'
+  get 'site/menu'
 end
