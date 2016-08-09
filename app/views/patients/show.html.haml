@@ -1,82 +1,85 @@
 %h2 Patient details
 
-.data
-  - if @patient.hospital == "B"
-    %p.b
-      %b Inititalen:
-      = @patient.initials
-  - if @patient.hospital == "C"
-    %p.c
-      %b Inititalen:
-      = @patient.initials
-  %p
-    %b Voornaam:
-    = @patient.first_name
-  %p
-    %b Achternaam:
-    = @patient.last_name
-  %p
-    %b BSN nummer:
-    = @patient.bsn
-  %p
-    %b Geboortedatum:
-    = @patient.birthdate.strftime("%d-%m-%Y")
-
+%table.table.table-striped#patient_details
+  %tbody
     - if @patient.hospital == "B"
-      %p.b
-        %b Geslacht:
-    - elsif @patient.hospital == "C"
-      %p.c
-        %b Geslacht:
-        = @patient.gender
-    - else
-      %p
-        %b Geslacht:
-        = @patient.gender
-
-  %p
-    %b Straat:
-    = @patient.street
-
-  - if @patient.hospital == "C"
-    %p.c
-      %b Huisnummer:
-      = @patient.housenumber
-
-  %p
-    %b Postcode:
-    = @patient.zipcode
-  %p
-    %b Woonplaats:
-    = @patient.city
-  %p
-    %b Telefoon:
-    = @patient.phone
-
+      %tr.b
+        %td Inititalen:
+        %td= @patient.initials
+    - if @patient.hospital == "C"
+      %tr.c
+        %td Inititalen:
+        %td= @patient.initials
+    %tr
+      %td Voornaam:
+      %td = @patient.first_name
+    %tr
+      %td Achternaam:
+      %td = @patient.last_name
+    %tr
+      %td BSN nummer:
+      %td= @patient.bsn
+    %tr
+      %td Geboortedatum:
+      %td= @patient.birthdate.strftime("%d-%m-%Y")
+      
     - if @patient.hospital == "B"
-      %p.b
-        %b Email:
+      %tr.b
+        %td Geslacht:
     - elsif @patient.hospital == "C"
-      %p.c
-        %b Email:
+      %tr.c
+        %td Geslacht:
     - else
-      %p
-        %b Email:
-        = @patient.email
-  %p
-    %b Zorgverzekeraar:
-    = @patient.insurance_company
-  %p
-    %b Polisnummer:
-    = @patient.insurance_number
+      %tr
+        %td Geslacht:
+        %td= @patient.gender
+        
+    %tr
+      %td Straat:
+      %td= @patient.street
+      
+    - if @patient.hospital == "C"
+      %tr.c
+        %td Huisnummer:
+        %td= @patient.housenumber
+        
+    %tr
+      %td Postcode:
+      %td= @patient.zipcode
+    %tr
+      %td Woonplaats:
+      %td= @patient.city
+    %tr
+      %td Telefoon:
+      %td= @patient.phone
+      
+    - if @patient.hospital == "B"
+      %tr.b
+        %td Email:
+        %td
+    - elsif @patient.hospital == "C"
+      %tr.c
+        %td Email:
+        %td
+    - else
+      %tr
+        %td Email:
+        %td= @patient.email
 
-  - if @patient.hospital == "C"
-    %p.c
-      %b Startdatum verzekering:
-      = @patient.startdate.strftime("%d-%m-%Y") unless @patient.startdate.blank?
-    %p.c
-      %b Einddatum verzekering:
-      = @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
+    %tr
+      %td Zorgverzekeraar:
+      %td= @patient.insurance_company
+    %tr
+      %td Polisnummer:
+      %td= @patient.insurance_number
+
+    - if @patient.hospital == "C"
+      %tr.c
+        %td Startdatum verzekering:
+        %td= @patient.startdate.strftime("%d-%m-%Y") unless @patient.startdate.blank?
+      %tr.c
+        %td Einddatum verzekering:
+        %td= @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
 
   = link_to 'Wijzigen', edit_patient_path(@patient), class: "btn btn-default"
   = link_to 'Verwijderen', @patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
