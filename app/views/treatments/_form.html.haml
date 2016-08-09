@@ -1,113 +1,61 @@
-= form_for @patient do |f|
-  = f.hidden_field :hospital, value: @hospital
-  - if @patient.errors.any?
+= form_for @treatment do |f|
+  = f.hidden_field :patient_id, value: @patient.id
+  - if @treatment.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@patient.errors.count, "error")} prohibited this patient from being saved:"
+      %h2= "#{pluralize(@treatment.errors.count, "error")} prohibited this patient from being saved:"
       %ul
-        - @patient.errors.full_messages.each do |msg|
+        - @treatment.errors.full_messages.each do |msg|
           %li= msg
 
   .row
-    - if @hospital == "B"
-      .col-md-3
-        .field.b
-          = f.label "Initialen"
-          = f.text_field :initials, focus: true
-    - if @hospital == "C"
-      .col-md-3
-        .field.c
-          = f.label "Initialen"
-          = f.text_field :initials, focus: true
     .col-md-3
       .field
-        = f.label "Voornaam"
-        = f.text_field :first_name, focus: true
+        = f.label "Datum behandeling"
+        = f.date_select :treatment_date, order: [:day, :month, :year], start_year: 2016
     .col-md-3
       .field
-        = f.label "Achternaam"
-        = f.text_field :last_name
+        = f.label "Type"
+        = f.collection_select :treatment_type, [['Poliklinisch', 'Poliklinisch'], ['Opname', 'Opname']], :first, :last, { include_blank: true }
+    .col-md-3
+      .field
+        = f.label "Behandelaar"
+        = f.text_field :treated_by
 
   .row
     .col-md-3
       .field
-        = f.label "BSN nummer"
-        = f.text_field :bsn
+        = f.label "Naam behandeling"
+        = f.text_field :name
     .col-md-3
       .field
-        = f.label "Geboortedatum"
-        = f.date_select :birthdate, order: [:day, :month, :year], start_year: 1950
-    - if @hospital == "B"
-      .col-md-3
-        .field.b
-          = f.label "Geslacht"
-    - elsif @hospital == "C"
-      .col-md-3
-        .field.c
-          = f.label "Geslacht"
-    - else
-      .col-md-3
-        .field
-          = f.label "Geslacht"
-          = f.collection_select :gender, [['Man', 'Man'],['Vrouw', 'Vrouw']], :first, :last, { include_blank: true, selected: @patient.gender }
+        = f.label "Afdeling"
+        = f.collection_select :department, [['Radiologie', 'Radiologie'], ['Chirurgie', 'Chirurgie'],['Cardiologie', 'Cardiologie']], :first, :last, { include_blank: true }
+    .col-md-3
+      .field
+        = f.label "Urgentie"
+        = f.collection_select :urgency, [['Laag', 'Laag'], ['Normaal', 'Normaal'],['Speod', 'Spoed']], :first, :last, { include_blank: true }
 
-  .row
-    .col-md-3
-      .field
-        = f.label "Straat"
-        = f.text_field :street
-    - if @hospital == "C"
-      .col-md-3
-        .field.c
-          = f.label "Huisnummer"
-          = f.text_field :housenumber
-    .col-md-3
-      .field
-        = f.label "Postcode"
-        = f.text_field :zipcode
-    .col-md-3
-      .field
-        = f.label "Woonplaats"
-        = f.text_field :city
-
-  .row
-    .col-md-3
-      .field
-        = f.label "Telefoon"
-        = f.text_field :phone
-    - if @hospital == "B"
-      .col-md-3
-        .field.b
-          = f.label "Email"
-    - elsif @hospital == "C"
-      .col-md-3
-        .field.c
-          = f.label "Email"
-    - else
-      .col-md-3
-        .field
-          = f.label "Email"
-          = f.text_field :email, class: ""
-
-  .row
-    .col-md-3
-      .field
-        = f.label "Zorgverzekeraar"
-        = f.text_field :insurance_company
-    .col-md-3
-      .field
-        = f.label "Polisnummer"
-        = f.number_field :insurance_number
-
-  - if @hospital == "C"
+  - if @patient.hospital == "C" or @patient.hospital == "B"
     .row
-      .col-md-3
-        .field.c
-          = f.label "Startdatum verzekering"
-          = f.date_select :startdate, order: [:day, :month, :year]
-      .col-md-3
-        .field.c
-          = f.label "Einddatum verzekering"
-          = f.date_select :enddate, order: [:day, :month, :year]
+      - if @patient.hospital == "B"
+        .col-md-3
+          .field.b
+            = f.label "Doorverwezen door"
+            = f.collection_select :registered_by, [['Huisarts', 'Huisarts'], ['Polikliniek', 'Polikliniek']], :first, :last, { include_blank: true }
+      - if @patient.hospital == "C"
+        .col-md-3
+          .field.c
+            = f.label "Doorverwezen door"
+            = f.collection_select :registered_by, [['Huisarts', 'Huisarts'], ['Polikliniek', 'Polikliniek']], :first, :last, { include_blank: true }
+      - if @patient.hospital == "C"
+        .col-md-3
+          .field.c
+            = f.label "Prijs"
+            = f.text_field :price
+        .col-md-3
+          .field.c
+            = f.label "Prijsklasse"
+            = f.collection_select :price_category, [['A', 'A'], ['B', 'B'],['C', 'C']], :first, :last, { include_blank: true }
 
   .row
     .col-md-12

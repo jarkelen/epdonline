@@ -1,3 +1,3 @@
 class Patient < ApplicationRecord
-  has_many :treatments
+  has_many :treatments, dependent: :destroy
 end

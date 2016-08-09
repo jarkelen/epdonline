@@ -1,13 +1,13 @@
 %h2 Behandelingen
 
-= link_to 'Behandeling toevoegen', new_treatment_path(patient: patient), class: "btn btn-primary"
+= link_to 'Behandeling toevoegen', new_treatment_path(patient: patient), class: "btn btn-default"
 
 %br
 
 %table.table.table-striped#treatments
   %thead
     %tr
-      %th Nummer
+      %th Datum
       %th Type
       %th Afdeling
       %th Behandelaar
@@ -24,7 +24,7 @@
   %tbody
     - patient.treatments.each do |treatment|
       %tr
-        %td= treatment.treatment_nr
+        %td= treatment.treatment_date.strftime("%d-%m-%Y")
         %td= treatment.treatment_type
         %td= treatment.department
         %td= treatment.treated_by

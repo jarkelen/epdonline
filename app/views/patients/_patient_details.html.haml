@@ -3,72 +3,65 @@
     %tbody
       - if @patient.hospital == "B"
         %tr.b
+          %td Geslacht
+          %td
           %td Inititalen
           %td= @patient.initials
-      - if @patient.hospital == "C"
+      - elsif @patient.hospital == "C"
         %tr.c
+          %td Geslacht
+          %td
           %td Inititalen
           %td= @patient.initials
+      - else
+        %tr
+          %td Geslacht
+          %td= @patient.gender
+          %td
+          %td
+
       %tr
         %td Voornaam
         %td= @patient.first_name
-      %tr
         %td Achternaam
         %td= @patient.last_name
       %tr
         %td BSN nummer
         %td= @patient.bsn
-      %tr
         %td Geboortedatum
         %td= @patient.birthdate.strftime("%d-%m-%Y")
-
-      - if @patient.hospital == "B"
-        %tr.b
-          %td Geslacht
-      - elsif @patient.hospital == "C"
-        %tr.c
-          %td Geslacht
-      - else
-        %tr
-          %td Geslacht
-          %td= @patient.gender
-
       %tr
         %td Straat
         %td= @patient.street
-
-      - if @patient.hospital == "C"
-        %tr.c
-          %td Huisnummer
-          %td= @patient.housenumber
+        - if @patient.hospital == "C"
+          %td.c Huisnummer
+          %td.c= @patient.housenumber
+        - else
+          %td
+          %td
 
       %tr
         %td Postcode
         %td= @patient.zipcode
-      %tr
         %td Woonplaats
         %td= @patient.city
       %tr
         %td Telefoon
         %td= @patient.phone
 
-      - if @patient.hospital == "B"
-        %tr.b
-          %td Email
+        - if @patient.hospital == "B"
+          %td.b Email
           %td
-      - elsif @patient.hospital == "C"
-        %tr.c
-          %td Email
+        - elsif @patient.hospital == "C"
+          %td.c Email
           %td
-      - else
-        %tr
+        - else
           %td Email
           %td= @patient.email
 
       %tr
         %td Zorgverzekeraar
         %td= @patient.insurance_company
-      %tr
         %td Polisnummer
         %td= @patient.insurance_number
 
@@ -76,6 +69,5 @@
         %tr.c
           %td Startdatum verzekering
           %td= @patient.startdate.strftime("%d-%m-%Y") unless @patient.startdate.blank?
-        %tr.c
           %td Einddatum verzekering
           %td= @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?

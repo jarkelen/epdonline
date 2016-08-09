@@ -38,20 +38,18 @@ ActiveRecord::Schema.define(version: 20160809150236) do
   end
 
   create_table "treatments", force: :cascade do |t|
-    t.string   "treatment_nr"
+    t.date     "treatment_date"
     t.string   "treatment_type"
     t.string   "treated_by"
     t.string   "name"
     t.string   "registered_by"
-    t.boolean  "urgency"
+    t.string   "urgency"
     t.string   "department"
     t.decimal  "price"
     t.string   "price_category"
-    t.integer  "hospital_id"
     t.integer  "patient_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["hospital_id"], name: "index_treatments_on_hospital_id", using: :btree
     t.index ["patient_id"], name: "index_treatments_on_patient_id", using: :btree
   end
 
