@@ -29,14 +29,14 @@
         %td= patient.first_name
         %td= patient.last_name
         %td= patient.bsn
-        %td= patient.birthdate
+        %td= patient.birthdate.strftime("%d-%m-%Y")
         - if params[:hospital] == "C"
-          %td.c= patient.startdate
-          %td.c= patient.enddate
+          %td.c= patient.startdate.strftime("%d-%m-%Y")
+          %td.c= patient.enddate.strftime("%d-%m-%Y")
         %td
           = link_to 'Details', patient, class: "btn btn-default btn-xs"
           = link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-default btn-xs"
-          = link_to 'Verwijderen', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          = link_to 'Verwijderen', patient(hospital: params[:hospital]), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 
