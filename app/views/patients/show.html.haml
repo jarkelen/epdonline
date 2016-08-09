@@ -3,6 +3,10 @@
   >
   Patient details
 
+.links
+  = link_to 'Wijzigen', edit_patient_path(@patient), class: "btn btn-default"
+  = link_to 'Verwijderen', @patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+
 .details
   %table.table#patient_details
     %tbody
@@ -26,7 +30,7 @@
       %tr
         %td Geboortedatum
         %td= @patient.birthdate.strftime("%d-%m-%Y")
-        
+
       - if @patient.hospital == "B"
         %tr.b
           %td Geslacht
@@ -37,16 +41,16 @@
         %tr
           %td Geslacht
           %td= @patient.gender
-          
+
       %tr
         %td Straat
         %td= @patient.street
-        
+
       - if @patient.hospital == "C"
         %tr.c
           %td Huisnummer
           %td= @patient.housenumber
-          
+
       %tr
         %td Postcode
         %td= @patient.zipcode
@@ -56,7 +60,7 @@
       %tr
         %td Telefoon
         %td= @patient.phone
-        
+
       - if @patient.hospital == "B"
         %tr.b
           %td Email
@@ -69,14 +73,14 @@
         %tr
           %td Email
           %td= @patient.email
-  
+
       %tr
         %td Zorgverzekeraar
         %td= @patient.insurance_company
       %tr
         %td Polisnummer
         %td= @patient.insurance_number
-  
+
       - if @patient.hospital == "C"
         %tr.c
           %td Startdatum verzekering
@@ -84,7 +88,3 @@
         %tr.c
           %td Einddatum verzekering
           %td= @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
-
-.links
-  = link_to 'Wijzigen', edit_patient_path(@patient), class: "btn btn-default"
-  = link_to 'Verwijderen', @patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"

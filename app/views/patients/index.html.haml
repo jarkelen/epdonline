@@ -3,6 +3,10 @@
   >
   Overzicht patienten
 
+= link_to 'Patient toevoegen', new_patient_path(hospital: params[:hospital]), class: "btn btn-primary"
+
+%br
+
 %table.table.table-striped#patients
   %thead
     %tr
@@ -37,7 +41,3 @@
           = link_to 'Details', patient, class: "btn btn-default btn-xs"
           = link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-default btn-xs"
           = link_to 'Verwijderen', patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
-
-%br
-
-= link_to 'Patient toevoegen', new_patient_path(hospital: params[:hospital]), class: "btn btn-primary"
