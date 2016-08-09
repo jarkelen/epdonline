@@ -1,0 +1,42 @@
+%h2 Behandelingen
+
+= link_to 'Behandeling toevoegen', new_treatment_path(patient: patient), class: "btn btn-primary"
+
+%br
+
+%table.table.table-striped#treatments
+  %thead
+    %tr
+      %th Nummer
+      %th Type
+      %th Afdeling
+      %th Behandelaar
+      %th Naam behandeling
+      - if patient.hospital == "B"
+        %th.b Doorverwezend door
+      - if patient.hospital == "C"
+        %th.c Doorverwezend door
+      %th Urgentie
+      - if patient.hospital == "C"
+        %th.c Prijs
+        %th.c Prijsklasse
+
+  %tbody
+    - patient.treatments.each do |treatment|
+      %tr
+        %td= treatment.treatment_nr
+        %td= treatment.treatment_type
+        %td= treatment.department
+        %td= treatment.treated_by
+        %td= treatment.name
+        - if patient.hospital == "B"
+          %td.b= treatment.registered_by
+        - if patient.hospital == "C"
+          %td.c= treatment.registered_by
+        %td= treatment.urgency
+        - if patient.hospital == "C"
+          %td.c= treatment.price
+          %td.c= treatment.price_category
+        %td
+          = link_to 'Wijzigen', edit_treatment_path(treatment, patient: patient), class: "btn btn-default btn-xs"
+          = link_to 'Verwijderen', treatment, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"

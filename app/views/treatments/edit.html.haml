@@ -1,0 +1,8 @@
+%h2
+  = link_to "Menu", site_menu_path(hospital: @patient.hospital)
+  >
+  = link_to "Patient details", patient_path(@patient, hospital: @patient.hospital)
+  >
+  Wijzigen behandeling
+
+//= render 'form'

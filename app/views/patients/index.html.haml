@@ -21,6 +21,7 @@
       - if params[:hospital] == "C"
         %th.c Startdatum
         %th.c Einddatum
+      %th Behandelingen
       %th
 
   %tbody
@@ -37,6 +38,7 @@
         - if params[:hospital] == "C"
           %td.c= patient.startdate.strftime("%d-%m-%Y")
           %td.c= patient.enddate.strftime("%d-%m-%Y")
+        %td= patient.treatments.count
         %td
           = link_to 'Details', patient, class: "btn btn-default btn-xs"
           = link_to 'Wijzigen', edit_patient_path(patient, hospital: params[:hospital]), class: "btn btn-default btn-xs"

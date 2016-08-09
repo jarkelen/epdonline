@@ -1,0 +1,81 @@
+.details
+  %table.table#patient_details
+    %tbody
+      - if @patient.hospital == "B"
+        %tr.b
+          %td Inititalen
+          %td= @patient.initials
+      - if @patient.hospital == "C"
+        %tr.c
+          %td Inititalen
+          %td= @patient.initials
+      %tr
+        %td Voornaam
+        %td= @patient.first_name
+      %tr
+        %td Achternaam
+        %td= @patient.last_name
+      %tr
+        %td BSN nummer
+        %td= @patient.bsn
+      %tr
+        %td Geboortedatum
+        %td= @patient.birthdate.strftime("%d-%m-%Y")
+
+      - if @patient.hospital == "B"
+        %tr.b
+          %td Geslacht
+      - elsif @patient.hospital == "C"
+        %tr.c
+          %td Geslacht
+      - else
+        %tr
+          %td Geslacht
+          %td= @patient.gender
+
+      %tr
+        %td Straat
+        %td= @patient.street
+
+      - if @patient.hospital == "C"
+        %tr.c
+          %td Huisnummer
+          %td= @patient.housenumber
+
+      %tr
+        %td Postcode
+        %td= @patient.zipcode
+      %tr
+        %td Woonplaats
+        %td= @patient.city
+      %tr
+        %td Telefoon
+        %td= @patient.phone
+
+      - if @patient.hospital == "B"
+        %tr.b
+          %td Email
+          %td
+      - elsif @patient.hospital == "C"
+        %tr.c
+          %td Email
+          %td
+      - else
+        %tr
+          %td Email
+          %td= @patient.email
+
+      %tr
+        %td Zorgverzekeraar
+        %td= @patient.insurance_company
+      %tr
+        %td Polisnummer
+        %td= @patient.insurance_number
+
+      - if @patient.hospital == "C"
+        %tr.c
+          %td Startdatum verzekering
+          %td= @patient.startdate.strftime("%d-%m-%Y") unless @patient.startdate.blank?
+        %tr.c
+          %td Einddatum verzekering
+          %td= @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
