@@ -61,10 +61,10 @@ class PatientsController < ApplicationController
   # DELETE /patients/1
   # DELETE /patients/1.json
   def destroy
-    hospital_id = @patient.hospital.id
+    hospital = @patient.hospital
     @patient.destroy
     respond_to do |format|
-      format.html { redirect_to patients_url(hospital: hospital_id), notice: 'Patient is succesvol verwijderd' }
+      format.html { redirect_to patients_url(hospital: hospital), notice: 'Patient is succesvol verwijderd' }
       format.json { head :no_content }
     end
   end
