@@ -83,5 +83,5 @@
           %td= @patient.enddate.strftime("%d-%m-%Y") unless @patient.enddate.blank?
 
 .links
-  = link_to 'Wijzigen', edit_patient_path(@patient), class "btn btn-default"
-  = link_to 'Verwijderen', @patient, method => delete, data => { confirm => 'Are you sure?' }, class "btn btn-danger"
+  = link_to 'Wijzigen', edit_patient_path(@patient), class: "btn btn-default"
+  = link_to 'Verwijderen', @patient, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
