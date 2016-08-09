@@ -1,3 +1,6 @@
-%h2 Toevoegen patient
+%h2
+  = link_to "Menu", site_menu_path(hospital: params[:hospital])
+  >
+  Toevoegen patient
 
 = render 'form'

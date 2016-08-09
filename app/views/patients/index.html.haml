@@ -1,4 +1,7 @@
-%h2 Overzicht patienten
+%h2
+  = link_to "Menu", site_menu_path(hospital: params[:hospital])
+  >
+  Overzicht patienten
 
 %table.table.table-striped#patients
   %thead
