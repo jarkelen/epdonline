@@ -1,4 +1,7 @@
-%h2 Patient details
+%h2
+  = link_to "Menu", site_menu_path(hospital: @patient.hospital)
+  >
+  Patient details
 
 .details
   %table.table#patient_details
