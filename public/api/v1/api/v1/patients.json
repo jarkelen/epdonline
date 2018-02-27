@@ -1,0 +1,64 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "patients",
+  "apis": [
+    {
+      "path": "/api/v1/patients.json",
+      "operations": [
+        {
+          "summary": "All patients",
+          "notes": "Shows all patients available in the database.",
+          "nickname": "Api::V1::Patients#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/patients.json",
+      "operations": [
+        {
+          "summary": "Create patient",
+          "notes": "Creates a new patient.",
+          "nickname": "Api::V1::Patients#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/patients/{id}.json",
+      "operations": [
+        {
+          "summary": "Show patient",
+          "notes": "Shows the details of a specific patient.",
+          "nickname": "Api::V1::Patients#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/patients/{id}.json",
+      "operations": [
+        {
+          "summary": "Update patient",
+          "notes": "Updates the details of a patient.",
+          "nickname": "Api::V1::Patients#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/patients/{id}.json",
+      "operations": [
+        {
+          "summary": "Delete patient",
+          "notes": "Deletes a patient.",
+          "nickname": "Api::V1::Patients#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}
