@@ -1,31 +1,4 @@
 class Api::V1::PatientsController < Api::V1::BaseController
-  swagger_controller :patients, 'Patients'
-
-  swagger_api :index do
-    summary 'All patients'
-    notes 'Shows all patients available in the database.'
-  end
-
-  swagger_api :show do
-    summary 'Show patient'
-    notes 'Shows the details of a specific patient.'
-  end
-
-  swagger_api :create do
-    summary 'Create patient'
-    notes 'Creates a new patient.'
-  end
-
-  swagger_api :update do
-    summary 'Update patient'
-    notes 'Updates the details of a patient.'
-  end
-
-  swagger_api :destroy do
-    summary 'Delete patient'
-    notes 'Deletes a patient.'
-  end
-
   def index
     patients = Patient.order(:last_name)
     render json: patients, status: 201
